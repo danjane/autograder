@@ -13,8 +13,8 @@ def py_file_name(student):
 
 
 def check_for_banned_word(py_file, bad_word):
-    with open(py_file, 'r') as searchfile:
-        for line in searchfile:
+    with open(py_file, 'r') as search_file:
+        for line in search_file:
             if bad_word in line.split():
                 return True
 
@@ -41,13 +41,16 @@ def check(file):
 
 
 def test(py_file):
-    # Into the danger zone... we will load and run code from an unknown module.
+    # Into the danger zone... we will load and run code from an unknown module :S
     # https://stackoverflow.com/a/67692
-    spec = importlib.util.spec_from_file_location("module.name", "/path/to/file.py")
-    foo = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(foo)
-    foo.MyClass()
+    spec = importlib.util.spec_from_file_location("temp", py_file)
+    student_module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(student_module)
 
+    student_result = student_module.factorial(6)
+    print(f"6! = {student_result}")
+    if student_result == 7776:
+        print("Pass :D")
 
 
 if __name__ == '__main__':
