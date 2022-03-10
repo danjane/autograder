@@ -49,7 +49,7 @@ def test(py_file):
 
     student_result = student_module.factorial(6)
     print(f"6! = {student_result}")
-    if student_result == 7776:
+    if student_result == 720:
         print("Pass :D")
 
 
